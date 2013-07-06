@@ -25,7 +25,7 @@
 (define LON1 empty)
 (define LON2 (cons 34 empty))
 (define LON3 (cons 45 (cons 34 empty)))
-
+#;
 (define (fn-for-lon lon)
   (cond
     [(empty? lon) (...)]
@@ -41,6 +41,32 @@
 
 ;; Functions:
 
+;; ListOfNumber -> Number
+;; produce total weight of owls in consumed list
+(check-expect (sum empty) 0)
+(check-expect (sum (cons 60 empty)) (+ 60 0))
+(check-expect (sum (cons 60 (cons 42 empty))) (+ 60 (+ 42 0)))
 
+;(define (sum lon) 0) ;stub
 
+(define (sum lon)
+  (cond
+    [(empty? lon) 0]
+    [else
+     (+ (first lon)
+          (sum (rest lon)))]))
+
+;; ListOfNumber -> Natural
+;; Produce total number of weights in consumed list
+(check-expect (weights empty) 0)
+(check-expect (weights (cons 60 empty)) (+ 1 0))
+(check-expect (weights (cons 60 (cons 42 empty))) (+ 1 (+ 1 0)))
+
+;(define (weights lon) 0) ; stub
+
+(define (weights lon)
+  (cond
+    [(empty? lon) 0]
+    [else
+     (+ 1 (weights(rest lon)))]))
 
